@@ -1,0 +1,41 @@
+.header{
+    background: linear-gradient(90deg,#838181, #494949);
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom: 2px solid gray;
+}
+
+.logo{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    &__title{
+        text-transform: capitalize;
+        color: #fff;
+        font-size: 30px;
+        font-weight: 700;
+        letter-spacing: 5%;
+    }
+}
+
+.menu{
+    &__list{
+        display: flex;
+        align-items: center;
+        gap: 32px;
+    }
+    &__item{
+        list-style: none;
+        &-link{
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            color: #fff;
+            letter-spacing: 5%;
+        }
+    }
+}
