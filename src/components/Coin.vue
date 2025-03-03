@@ -6,16 +6,21 @@
             {{ coin.name }} ({{ coin.symbol.toUpperCase() }})
         </td>
         <td>${{ coin.current_price.toFixed(2) }}</td>
-        <td>1.23</td>
-        <td>${{( 1.23 * coin.current_price).toFixed(2) }}</td>
+        <td>
+            {{ coin.balance}}
+        </td>
+        <td>${{( coin.balance * coin.current_price).toFixed(2) }}</td>
     </tr>
 </template>
 
 <script setup>
+
 defineProps({
     coin: Object,
     index: Number
 })
+
+
 </script>
 
 <style lang="scss">

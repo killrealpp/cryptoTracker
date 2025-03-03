@@ -22,7 +22,12 @@ export const useCryptoStore = defineStore('crypto', () => {
                 }
             });
 
-            coins.value = response.data;
+            coins.value = response.data.map((coin, index)=>({
+                ...coin,
+                balance: index < 10 ? 1 : 0
+            }))
+
+            console.log(coins.value)
 
         } catch (err) {
             error.value = "Ошибка загрузки данных";
@@ -44,7 +49,13 @@ export const useCryptoStore = defineStore('crypto', () => {
                 }
             });
 
-            coins.value = [...coins.value, ...response.data];
+            coins.value = [
+                ...coins.value,
+                ...response.data.map((coin, index)=>({
+                    ...coin,
+                    balance: coins.value.length + index < 10 ? 1 : 0
+                }))
+            ]
 
         } catch (err) {
             error.value = "Ошибка загрузки данных";
@@ -53,10 +64,10 @@ export const useCryptoStore = defineStore('crypto', () => {
     };
 
     const totalBalance = computed(() => {
-        return coins.value.reduce((sum, coin) => sum + (coin.current_price * 1.23), 0).toFixed(2);
+        return coins.value.reduce((sum, coin) => sum + (coin.current_price * coin.balance), 0).toFixed(2);
     });
 
     return {
-        coins, loading, error, fetchCoins, loadMoreCoins, totalBalance
+        coins, loading, error, fetchCoins, loadMoreCoins, totalBalance, 
     };
 });
