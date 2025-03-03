@@ -53,7 +53,7 @@ export const useCryptoStore = defineStore('crypto', () => {
     };
 
     const totalBalance = computed(() => {
-        return coins.value.reduce((sum, coin) => sum + (coin.current_price * coin.balance), 0).toFixed(2);
+        return coins.value.reduce((sum, coin) => sum + (coin.current_price * 1.23), 0).toFixed(2);
     });
 
     return {

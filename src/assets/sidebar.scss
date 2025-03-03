@@ -1,11 +1,10 @@
 .sidebar {
   min-width: 350px;
-  background: linear-gradient(90deg, #838181, #494949);
+  background: #2a2a2a;
   padding-top: 32px;
   display: flex;
   flex-direction: column;
   min-height: calc(100vh - 76px);
-  border-left: 2px solid gray;
   &__title {
     font-size: 18px;
     font-weight: 700;

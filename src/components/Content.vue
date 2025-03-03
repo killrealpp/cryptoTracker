@@ -1,3 +1,4 @@
+
 <template>
     <div class="content">
         <div class="content__inner">
@@ -14,7 +15,7 @@
 
 
             <div class="content-chart">
-                <div class="chart-placeholder">Chart Placeholder</div>
+                <balance-chart/>
             </div>
 
 
@@ -52,6 +53,7 @@
 import { ref, onMounted, nextTick } from 'vue';
 import Coin from '@/components/Coin.vue';
 import { useCryptoStore } from '@/stores/cryptoStore';
+import BalanceChart from './BalanceChart.vue';
 
 const observer = ref(null);
 

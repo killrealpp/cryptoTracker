@@ -23,5 +23,6 @@ main{
 
 .layout{
   display: flex;
+  border: 4px solid gray;
 }
 </style>
