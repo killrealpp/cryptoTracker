@@ -28,11 +28,11 @@
                     v-model:show="cryptoStore.dialogVisible"
                 >
                     <div class="add-list">
-                        <input class="add__input" type="text" placeholder="Search...">
+                        <input class="add__input" type="text" placeholder="Search..." v-model="cryptoStore.searchQuery">
                         <div class="add-list__scroll" v-if="!cryptoStore.addCoinsLoad">
                                 <Coin-Item
                                 class="coin-item"
-                                v-for="coinItem in cryptoStore.addCoins"
+                                v-for="coinItem in cryptoStore.searchCoin"
                                 :key="coinItem.id"
                                 :coinItem="coinItem"
                                 />

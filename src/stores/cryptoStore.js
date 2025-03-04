@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia';
 import { ref, computed } from 'vue';
 import axios from 'axios';
+import CoinItem from '@/components/CoinItem.vue';
 
 export const useCryptoStore = defineStore('crypto', () => {
     const coins = ref([]);
@@ -14,6 +15,7 @@ export const useCryptoStore = defineStore('crypto', () => {
     const chartTab = ref(1)
     const addCoins = ref([])
     const addCoinsLoad = ref(null)
+    const searchQuery = ref('')
 
 
     const fetchCoins = async () => {
@@ -133,10 +135,14 @@ export const useCryptoStore = defineStore('crypto', () => {
     })
 
     
+    const searchCoin = computed(()=>{
+        if (!addCoins.value) return [];
+        return addCoins.value.filter(coinItem => coinItem.name.toLowerCase().includes(searchQuery.value.toLowerCase()))
+    })
 
 
     return {
         coins, loading, error, fetchCoins, loadMoreCoins, totalBalance, balanceHistory, priceChange, priceChangePercent, updateBalanceHistory,
-        dialogVisible, showDialog, chartTab, addCoins, fetchAddCoins, perAddPage, addCoinsLoad
+        dialogVisible, showDialog, chartTab, addCoins, fetchAddCoins, perAddPage, addCoinsLoad, searchQuery, searchCoin
     };
 });
