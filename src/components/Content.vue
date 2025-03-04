@@ -29,14 +29,15 @@
                 >
                     <div class="add-list">
                         <input class="add__input" type="text" placeholder="Search...">
-                        <div class="add-list__scroll">
+                        <div class="add-list__scroll" v-if="!cryptoStore.addCoinsLoad">
                                 <Coin-Item
                                 class="coin-item"
-                                v-for="coinItem in cryptoStore.coins"
+                                v-for="coinItem in cryptoStore.addCoins"
                                 :key="coinItem.id"
                                 :coinItem="coinItem"
                                 />
                         </div>
+                        <div v-else>Loading...</div>
                     </div>
 
                 </my-dialog>

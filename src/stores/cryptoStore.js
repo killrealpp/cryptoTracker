@@ -13,6 +13,7 @@ export const useCryptoStore = defineStore('crypto', () => {
     const dialogVisible = ref(false)
     const chartTab = ref(1)
     const addCoins = ref([])
+    const addCoinsLoad = ref(null)
 
 
     const fetchCoins = async () => {
@@ -71,6 +72,9 @@ export const useCryptoStore = defineStore('crypto', () => {
 
     
     const fetchAddCoins = async ()=>{
+
+        addCoinsLoad.value = true
+
         try{
 
             const response = await axios.get('https://api.coingecko.com/api/v3/coins/markets', {
@@ -85,6 +89,8 @@ export const useCryptoStore = defineStore('crypto', () => {
 
         } catch(e){
             console.error(e)
+        } finally{
+            addCoinsLoad.value = false
         }
     }
 
@@ -104,6 +110,7 @@ export const useCryptoStore = defineStore('crypto', () => {
         dialogVisible.value = true
         chartTab.value = 0
         document.body.style.overflow = 'hidden'
+        fetchAddCoins()
     }
 
 
@@ -125,9 +132,11 @@ export const useCryptoStore = defineStore('crypto', () => {
         return ((lastPrice - prevPrice)/prevPrice * 100).toFixed(2)
     })
 
+    
+
 
     return {
         coins, loading, error, fetchCoins, loadMoreCoins, totalBalance, balanceHistory, priceChange, priceChangePercent, updateBalanceHistory,
-        dialogVisible, showDialog, chartTab, addCoins, fetchAddCoins, perAddPage
+        dialogVisible, showDialog, chartTab, addCoins, fetchAddCoins, perAddPage, addCoinsLoad
     };
 });
