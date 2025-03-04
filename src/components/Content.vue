@@ -24,21 +24,33 @@
                     </p>
                 </div>
                 <button class="content-balance__add" @click="cryptoStore.showDialog">Add Crypto</button>
-                <my-dialog
-                    v-model:show="cryptoStore.dialogVisible"
-                >
+                <my-dialog v-model:show="cryptoStore.dialogVisible">
+                    
                     <div class="add-list">
-                        <input class="add__input" type="text" placeholder="Search..." v-model="cryptoStore.searchQuery">
-                        <div class="add-list__scroll" v-if="!cryptoStore.addCoinsLoad">
-                                <Coin-Item
-                                class="coin-item"
-                                v-for="coinItem in cryptoStore.searchCoin"
-                                :key="coinItem.id"
-                                :coinItem="coinItem"
-                                />
+                        <input class="add__input" type="text" placeholder="Search..." v-model="cryptoStore.searchQuery"
+                            v-if="!cryptoStore.selectedCoin">
+
+                        <div class="add-list__scroll" v-if="!cryptoStore.addCoinsLoad && !cryptoStore.selectedCoin">
+                            <div class="add-list__inner">
+                                <Coin-Item 
+                                    class="coin-item" 
+                                    v-for="coinItem in cryptoStore.searchCoin"    
+                                    :key="coinItem.id" 
+                                    :coinItem="coinItem" 
+                                    @click="cryptoStore.selectCoin(coinItem)" 
+                                    />
+                            </div>
                         </div>
-                        <div v-else>Loading...</div>
+
+                        <div v-else-if="cryptoStore.addCoinsLoad">Loading...</div>
+
+                        <div v-else>
+                            <p>You selected: <strong>{{ cryptoStore.selectedCoin.name }}</strong></p>
+                            <p>Тут конечно должен быть адрес, выбор сети и все такое</p>
+                            <button class="exit__btn" @click="cryptoStore.selectedCoin = null">exit</button>
+                        </div>
                     </div>
+
 
                 </my-dialog>
             </div>
@@ -46,9 +58,7 @@
 
 
             <div class="content-chart">
-                <balance-chart
-                    v-if="cryptoStore.chartTab === 1"
-                />
+                <balance-chart v-if="cryptoStore.chartTab === 1" />
                 <div v-else>Chart off</div>
             </div>
 

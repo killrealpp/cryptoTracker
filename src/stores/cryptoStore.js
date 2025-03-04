@@ -1,7 +1,6 @@
 import { defineStore } from 'pinia';
 import { ref, computed } from 'vue';
 import axios from 'axios';
-import CoinItem from '@/components/CoinItem.vue';
 
 export const useCryptoStore = defineStore('crypto', () => {
     const coins = ref([]);
@@ -16,6 +15,7 @@ export const useCryptoStore = defineStore('crypto', () => {
     const addCoins = ref([])
     const addCoinsLoad = ref(null)
     const searchQuery = ref('')
+    const selectedCoin = ref(null)
 
 
     const fetchCoins = async () => {
@@ -74,11 +74,8 @@ export const useCryptoStore = defineStore('crypto', () => {
 
     
     const fetchAddCoins = async ()=>{
-
         addCoinsLoad.value = true
-
         try{
-
             const response = await axios.get('https://api.coingecko.com/api/v3/coins/markets', {
                 params:{
                     vs_currency: 'usd',
@@ -86,9 +83,7 @@ export const useCryptoStore = defineStore('crypto', () => {
                     page: 1,
                 }
             })
-
             addCoins.value = response.data
-
         } catch(e){
             console.error(e)
         } finally{
@@ -101,7 +96,6 @@ export const useCryptoStore = defineStore('crypto', () => {
     const updateBalanceHistory = ()=>{
         const currentBalance = parseFloat(totalBalance.value)
         balanceHistory.value.push(currentBalance)
-
         if (balanceHistory.value.length > 10){
             balanceHistory.value.shift()
         }
@@ -113,6 +107,11 @@ export const useCryptoStore = defineStore('crypto', () => {
         chartTab.value = 0
         document.body.style.overflow = 'hidden'
         fetchAddCoins()
+    }
+
+
+    const selectCoin = (coin)=>{
+        selectedCoin.value = coin
     }
 
 
@@ -143,6 +142,7 @@ export const useCryptoStore = defineStore('crypto', () => {
 
     return {
         coins, loading, error, fetchCoins, loadMoreCoins, totalBalance, balanceHistory, priceChange, priceChangePercent, updateBalanceHistory,
-        dialogVisible, showDialog, chartTab, addCoins, fetchAddCoins, perAddPage, addCoinsLoad, searchQuery, searchCoin
+        dialogVisible, showDialog, chartTab, addCoins, fetchAddCoins, perAddPage, addCoinsLoad, searchQuery, searchCoin, selectedCoin,
+        selectCoin,
     };
 });
