@@ -31,7 +31,7 @@ const chartOptions = ref({
     xaxis: {
         categories: [],
         labels: {
-            style: { colors: "#ffffff", fontSize: "12px" }, // Цвет подписей оси X
+            style: { colors: "#fff", fontSize: "12px" }, 
         },
     },
     yaxis: {
@@ -42,12 +42,12 @@ const chartOptions = ref({
     stroke: {
         curve: "smooth",
         width: 3, 
-        colors: ["#ff4d4d"], 
+        colors: ["#fff"], 
     },
     markers: {
         size: 5,
         colors: ["#ff4d4d"], 
-        strokeColors: "#ffffff",
+        strokeColors: "#fff",
         strokeWidth: 2,
     },
     title: {
@@ -72,6 +72,8 @@ watchEffect(() => {
         newSeries.shift();
         newCategories.shift();
     }
+
+    cryptoStore.updateBalanceHistory();
 
     chartSeries.value = [{ name: "Total Balance", data: newSeries }];
     chartOptions.value = { ...chartOptions.value, xaxis: { categories: newCategories } };
