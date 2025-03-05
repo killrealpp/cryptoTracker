@@ -16,6 +16,7 @@ export const useCryptoStore = defineStore('crypto', () => {
     const addCoinsLoad = ref(null)
     const searchQuery = ref('')
     const selectedCoin = ref(null)
+    const homeVisivle = ref(false)
 
 
     const fetchCoins = async () => {
@@ -109,6 +110,12 @@ export const useCryptoStore = defineStore('crypto', () => {
         fetchAddCoins()
     }
 
+    const showHome = ()=>{
+        homeVisivle.value = true
+        document.body.style.overflow = 'hidden'
+    }
+
+
 
     const selectCoin = (coin)=>{
         selectedCoin.value = coin
@@ -143,6 +150,6 @@ export const useCryptoStore = defineStore('crypto', () => {
     return {
         coins, loading, error, fetchCoins, loadMoreCoins, totalBalance, balanceHistory, priceChange, priceChangePercent, updateBalanceHistory,
         dialogVisible, showDialog, chartTab, addCoins, fetchAddCoins, perAddPage, addCoinsLoad, searchQuery, searchCoin, selectedCoin,
-        selectCoin,
+        selectCoin, homeVisivle, showHome
     };
 });
