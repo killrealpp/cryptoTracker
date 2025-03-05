@@ -17,6 +17,7 @@ export const useCryptoStore = defineStore('crypto', () => {
     const searchQuery = ref('')
     const selectedCoin = ref(null)
     const homeVisivle = ref(false)
+    const activePortfolio = ref('main')
 
 
     const fetchCoins = async () => {
@@ -150,6 +151,6 @@ export const useCryptoStore = defineStore('crypto', () => {
     return {
         coins, loading, error, fetchCoins, loadMoreCoins, totalBalance, balanceHistory, priceChange, priceChangePercent, updateBalanceHistory,
         dialogVisible, showDialog, chartTab, addCoins, fetchAddCoins, perAddPage, addCoinsLoad, searchQuery, searchCoin, selectedCoin,
-        selectCoin, homeVisivle, showHome
+        selectCoin, homeVisivle, showHome, activePortfolio
     };
 });

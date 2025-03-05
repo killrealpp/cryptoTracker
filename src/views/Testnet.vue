@@ -4,7 +4,7 @@
             <Header />
             <div class="layout">
                 <Sidebar />
-                <Content />
+                <TestContent/>
             </div>
         </div>
     </main>
@@ -13,7 +13,7 @@
 <script setup>
 import Header from '@/components/Header.vue';
 import Sidebar from '@/components/Sidebar.vue';
-import Content from '@/components/Content.vue'
+import TestContent from '@/components/TestContent.vue';
 import { useCryptoStore } from '@/stores/cryptoStore';
 
 const cryptoStore = useCryptoStore()
