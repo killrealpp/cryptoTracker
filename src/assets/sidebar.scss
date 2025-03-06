@@ -16,7 +16,7 @@
   &__list {
     display: flex;
     flex-direction: column;
-    gap: 5px 0;
+    gap: 135px 0;
     margin-bottom: 15px;
   }
   &__item {
@@ -54,5 +54,57 @@
     &:hover{
         background-color: #3c8a52;
     }
+  }
+}
+
+
+.bro{
+  width: 188px;
+  height: 188px;
+  margin: auto;
+}
+
+
+
+@media (max-width: 1215px){
+  .sidebar{
+      min-width: 285px;
+  }
+}
+
+@media (max-width: 900px){
+  .sidebar{
+    min-width: 235px;
+  }
+}
+
+@media (max-width: 850px){
+  .sidebar__itemer{
+    font-size: 0;
+  }
+  .sidebar{
+    min-width: 115px;
+    &__title{
+      font-size: 0;
+    }
+  }
+
+  .bro{
+    display: none;
+  }
+}
+
+@media (max-width: 670px){
+  .sidebar{
+    min-width: 70px;
+    &__item{
+      padding: 15px 3px;
+    }
+  }
+}
+
+@media (max-width: 450px){
+  .sidebar{
+    display: none;
   }
 }

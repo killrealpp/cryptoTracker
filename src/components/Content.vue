@@ -69,7 +69,7 @@
                 <table class="assets-table">
                     <thead>
                         <tr>
-                            <th>#</th>
+                            <th >#</th>
                             <th>Coin</th>
                             <th>Price</th>
                             <th>Balance</th>
@@ -125,6 +125,6 @@ onMounted(() => {
 });
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 @import '/src/assets/content.scss';
 </style>

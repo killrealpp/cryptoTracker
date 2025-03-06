@@ -2,6 +2,8 @@ import { createRouter, createWebHistory } from "vue-router";
 import HomeView from '@/views/HomeView.vue'
 import Mainnet from "@/views/Mainnet.vue";
 import Testnet from "@/views/Testnet.vue";
+import Cryptocurrencies from "@/views/Cryptocurrencies.vue";
+import Watchlist from "@/views/Watchlist.vue";
 
 const routes = [
     {
@@ -15,6 +17,14 @@ const routes = [
     {
         path: '/testnet',
         component: Testnet
+    },
+    {
+        path: '/cryptocurrencies',
+        component: Cryptocurrencies
+    },
+    {
+        path: '/watchlist',
+        component: Watchlist
     }
 ]
 

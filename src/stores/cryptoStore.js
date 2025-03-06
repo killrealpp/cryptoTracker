@@ -20,6 +20,7 @@ export const useCryptoStore = defineStore('crypto', () => {
     const homeVisivle = ref(false)
     const activePortfolio = ref('main')
     const newBalance = ref(0)
+    const isMenuOpen = ref(false)
 
 
     const fetchCoins = async () => {
@@ -106,6 +107,16 @@ export const useCryptoStore = defineStore('crypto', () => {
     }
 
 
+    const toggleMenu = ()=>{
+        chartTab.value = 0
+        isMenuOpen.value = !isMenuOpen.value
+    }
+
+    const hideMenu = ()=>{
+        isMenuOpen.value = !isMenuOpen.value
+        chartTab.value = 1
+    }
+
     const showDialog = ()=>{
         dialogVisible.value = true
         chartTab.value = 0
@@ -139,6 +150,11 @@ export const useCryptoStore = defineStore('crypto', () => {
         }
     };
 
+
+    const createPortfolio = ()=>{
+        dialogVisible.value = true
+    }
+
     const totalBalance = computed(() => {
         return coins.value.reduce((sum, coin) => sum + (coin.current_price * coin.balance), 0).toFixed(2);
     });
@@ -167,6 +183,6 @@ export const useCryptoStore = defineStore('crypto', () => {
     return {
         coins, loading, error, fetchCoins, loadMoreCoins, totalBalance, balanceHistory, priceChange, priceChangePercent, updateBalanceHistory,
         dialogVisible, showDialog, chartTab, addCoins, fetchAddCoins, perAddPage, addCoinsLoad, searchQuery, searchCoin, selectedCoin,
-        selectCoin, homeVisivle, showHome, activePortfolio, handleAddCoin, newBalance, updateCoinBalance
+        selectCoin, homeVisivle, showHome, activePortfolio, handleAddCoin, newBalance, updateCoinBalance, createPortfolio, toggleMenu, isMenuOpen, hideMenu
     };
 });

@@ -1,6 +1,6 @@
 <template>
     <tr>
-        <td>{{ index + 1 }}</td>
+        <td class="index">{{ index + 1 }}</td>
         <td class="coin">
             <img class="coin-icon" :src="coin.image" :alt="coin.name">
             {{ coin.name }} ({{ coin.symbol.toUpperCase() }})
@@ -33,4 +33,7 @@ defineProps({
     width: 24px;
     height: 24px;
 }
+
+
+
 </style>

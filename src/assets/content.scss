@@ -180,3 +180,38 @@
   margin-top: 5px;
   width: 65%;
 }
+
+@media (max-width: 1070px) {
+  .assets-table th:nth-child(1),
+  .assets-table td:nth-child(1) {
+    display: none;
+  }
+}
+
+@media (max-width: 1070px) {
+  tbody{
+    font-size: 12px;
+  }
+}
+
+
+@media (max-width: 650px) {
+  .assets-table th:nth-child(4), 
+  .assets-table td:nth-child(4) { 
+    display: none;
+  }
+}
+
+@media (max-width: 550px) {
+  .assets-table th:last-child,
+  .assets-table td:last-child {
+    width: 50px;
+    font-size: 0;
+  }
+}
+
+@media (max-width: 430px) {
+  tbody{
+    font-size: 8px;
+  }
+}
