@@ -1,3 +1,4 @@
+
 <template>
     <tr>
         <td>{{ index + 1 }}</td>
@@ -10,6 +11,14 @@
             {{ coin.balance}}
         </td>
         <td>${{( coin.balance * coin.current_price).toFixed(2) }}</td>
+        <td>
+            <img   
+                class="coin__plus"    
+                src="/plus.svg"    
+                alt="add coin"
+                @click="$emit('add-coin', coin)"
+            >
+        </td>
     </tr>
 </template>
 
@@ -28,6 +37,13 @@ defineProps({
     display: flex;
     align-items: center;
     gap: 10px;
+    &__plus{
+        transition: filter 0.3s ease;
+        cursor: pointer;
+        &:hover{
+            filter: brightness(0.3);
+        }
+    }
 }
 .coin-icon {
     width: 24px;

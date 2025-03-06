@@ -10,9 +10,9 @@
                     <span class="sidebar__item-sum"> = $14589</span>
                 </div>
             </li>
-            <li class="sidebar__item" :class="{active: cryptoStore.activePortfolio === 'test'}" @click="selectPortfolio('main', '/testnet')">
+            <li class="sidebar__item" :class="{active: cryptoStore.activePortfolio === 'test'}" @click="selectPortfolio('test', '/testnet')">
                 <router-link to="/testnet"/>
-                <img class="sidebar__item-img" src="/avatar.svg" alt="sidebar network image">
+                <img class="sidebar__item-img" src="/avatar-test.svg" alt="sidebar network image">
                 <div class="sidebar__itemer">
                     <h4 class="sidebar__item-title">Test Portfolio</h4>
                     <span class="sidebar__item-sum"> = $14589</span>

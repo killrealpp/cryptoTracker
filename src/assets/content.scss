@@ -157,3 +157,26 @@
     background: #444;
   }
 }
+
+.add__btn{
+  padding: 5px 10px;
+  border: none;
+  color: #fff;
+  border-radius: 5px;
+  background: #3c8a52;
+  width: 25%;
+  &:hover{
+    background: #444;
+  }
+}
+
+.input__coin{
+  background-color: #444;
+  color: #fff;
+  padding: 6px;
+  border-radius: 8px;
+  outline: none;
+  margin-right: 20px;
+  margin-top: 5px;
+  width: 65%;
+}

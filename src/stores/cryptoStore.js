@@ -1,3 +1,4 @@
+
 import { defineStore } from 'pinia';
 import { ref, computed } from 'vue';
 import axios from 'axios';
@@ -18,6 +19,7 @@ export const useCryptoStore = defineStore('crypto', () => {
     const selectedCoin = ref(null)
     const homeVisivle = ref(false)
     const activePortfolio = ref('main')
+    const newBalance = ref(0)
 
 
     const fetchCoins = async () => {
@@ -123,6 +125,20 @@ export const useCryptoStore = defineStore('crypto', () => {
     }
 
 
+
+    const handleAddCoin = (coin)=>{
+        console.log(coin)
+        selectedCoin.value = coin
+        dialogVisible.value = true
+    }
+
+    const updateCoinBalance = () => {
+        if (selectedCoin.value && newBalance.value >= 0) {
+            selectedCoin.value.balance = newBalance.value; 
+            dialogVisible.value = false; 
+        }
+    };
+
     const totalBalance = computed(() => {
         return coins.value.reduce((sum, coin) => sum + (coin.current_price * coin.balance), 0).toFixed(2);
     });
@@ -151,6 +167,6 @@ export const useCryptoStore = defineStore('crypto', () => {
     return {
         coins, loading, error, fetchCoins, loadMoreCoins, totalBalance, balanceHistory, priceChange, priceChangePercent, updateBalanceHistory,
         dialogVisible, showDialog, chartTab, addCoins, fetchAddCoins, perAddPage, addCoinsLoad, searchQuery, searchCoin, selectedCoin,
-        selectCoin, homeVisivle, showHome, activePortfolio
+        selectCoin, homeVisivle, showHome, activePortfolio, handleAddCoin, newBalance, updateCoinBalance
     };
 });

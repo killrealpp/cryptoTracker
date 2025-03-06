@@ -1,3 +1,4 @@
+
 <template>
     <div class="content">
         <div class="content__inner">
@@ -23,36 +24,6 @@
                     }">${{ cryptoStore.priceChange }}
                     </p>
                 </div>
-                <button class="content-balance__add" @click="cryptoStore.showDialog">Add Crypto</button>
-                <my-dialog v-model:show="cryptoStore.dialogVisible">
-                    
-                    <div class="add-list">
-                        <input class="add__input" type="text" placeholder="Search..." v-model="cryptoStore.searchQuery"
-                            v-if="!cryptoStore.selectedCoin">
-
-                        <div class="add-list__scroll" v-if="!cryptoStore.addCoinsLoad && !cryptoStore.selectedCoin">
-                            <div class="add-list__inner">
-                                <TestCoinItem 
-                                    class="coin-item" 
-                                    v-for="coinItem in cryptoStore.searchCoin"    
-                                    :key="coinItem.id" 
-                                    :coinItem="coinItem" 
-                                    @click="cryptoStore.selectCoin(coinItem)" 
-                                    />
-                            </div>
-                        </div>
-
-                        <div v-else-if="cryptoStore.addCoinsLoad">Loading...</div>
-
-                        <div v-else>
-                            <p>You selected: <strong>{{ cryptoStore.selectedCoin.name }}</strong></p>
-                            <p>Тут конечно должен быть адрес, выбор сети и все такое</p>
-                            <button class="exit__btn" @click="cryptoStore.selectedCoin = null">exit</button>
-                        </div>
-                    </div>
-
-
-                </my-dialog>
             </div>
 
 
@@ -74,10 +45,29 @@
                             <th>Price</th>
                             <th>Balance</th>
                             <th>Total Value</th>
+                            <th>Options</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <TestCoin v-for="(coin, index) in cryptoStore.coins" :key="coin.id" :coin="coin" :index="index" />
+                        <TestCoin 
+                            v-for="(coin, index) in cryptoStore.coins"  
+                            :key="coin.id"   
+                            :coin="coin"  
+                            :index="index"
+                            @add-coin="cryptoStore.handleAddCoin"
+                        />
+                        <my-dialog v-model:show="cryptoStore.dialogVisible">
+                            <div v-if="cryptoStore.selectedCoin">
+                                <h4>{{ cryptoStore.selectedCoin.name }} balance</h4>
+                                <input 
+                                    class="input__coin"
+                                    type="number" 
+                                    v-model="cryptoStore.newBalance" 
+                                    placeholder="Enter new balance..."
+                                />
+                                <button class="add__btn" @click="cryptoStore.updateCoinBalance">Save</button>
+                            </div>
+                        </my-dialog>
                     </tbody>
                 </table>
 
@@ -93,7 +83,6 @@ import { ref, onMounted, nextTick } from 'vue';
 import { useCryptoStore } from '@/stores/cryptoStore';
 import TestBalanceChart from '@/components/TestBalanceChart.vue';
 import TestCoin from '@/components/TestCoin.vue';
-import TestCoinItem from '@/components/TestCoinItem.vue';
 
 const observer = ref(null);
 
