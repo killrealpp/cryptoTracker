@@ -50,8 +50,8 @@
         <img class="avatar" src="/avatar.svg" alt="avatar">
     </header>
     <div class="net">
-        <div class="mainnet">Mainnet</div>
-        <div class="testnet">Testnet</div>
+        <div class="mainnet" @click="router.push('/mainnet')">Mainnet</div>
+        <div class="testnet" @click="router.push('/testnet')">Testnet</div>
     </div>
 </template>
 
